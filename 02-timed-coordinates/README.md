@@ -19,7 +19,15 @@
 - This is the same man riding on a horse you've seen before
 - But since there's a time component, the coordinate points themselves may reveal something new
 - Major Hint: Consider exporting what the counter looks like every 50 milliseconds, then resetting the whole counter
-    - what would a sequence of those snapshots look like?
+    - What would a sequence of those snapshots look like?
+
+## Class Interface
+
+`CoordinateTimedCounter` works like the `CoordinateCounter` from the first project, with two additions:
+
+- `update(x, y, t)`: same as before, but now also takes a timestamp
+- `reset()`: clears the internal count grid back to zero (without changing width/height)
+- `export()`: returns the current count grid as a 2D array of shape `(height, width)`
 
 ## Sample Usage
 
@@ -44,7 +52,20 @@ for x, y, t in coordinates:
     counter.update(x=x, y=y, t=t)
 ```
 
+## Tips & Pointers
+
+- You already have a working grid from step 1: `reset()` and `export()` are small additions on top of that
+- `matplotlib.animation.ArtistAnimation` or `FuncAnimation` can turn a list of 2D arrays into an animation
+- `imageio` can write frames to a `.gif` or `.mp4` if you prefer a video file
+- Keep the same coordinate axis convention from before:
+    - `x` $(0 \to 319): (\text{left} \to \text{right})$
+    - `y` $(0 \to 319): (\text{top} \to \text{bottom})$
+
+## Workflow
+
+- 
+
 ## Deliverables
 
-- Create a Jupyter notebook that visualizes the data
-    - A heatmap (or a series of heatmaps?), an animation, a video, multiple frames, or something else entirely
+- Create a Jupyter notebook that visualizes the data in what way you prefer
+    - A heatmap (or a series of heatmaps), an animation, a video, multiple frames, or something else entirely
